@@ -1,6 +1,12 @@
 # ASP.NET Core Identity Series
 
+## The most complete guide for ASP.NET Core Identity 
+
 ![ASP.NET Core Identity Series](https://chsakell.files.wordpress.com/2018/04/aspnet-core-identity-13.png)
+
+[![License](https://img.shields.io/github/license/chsakell/aspnet-core-identity.svg)](https://github.com/chsakell/aspnet-core-identity/blob/master/LICENSE) [![Build status](https://ci.appveyor.com/api/projects/status/44f1gsf3quf0fbw2/branch/master?svg=true
+)](https://ci.appveyor.com/project/chsakell/aspnet-core-identity)
+
 
 ## Part 1 - [Getting Started](http://chsakell.com/2018/04/28/asp-net-core-identity-series-getting-started)
 
@@ -29,24 +35,60 @@
 * Explain `Imperative authorization` by example
 * Associated repository branch: [authorization](https://github.com/chsakell/aspnet-core-identity/tree/authorization)
 
+## Part 4 - [OAuth 2.0, OpenID Connect & IdentityServer](https://wp.me/p3mRWu-1Ag)
+
+* Explain how `OAuth 2.0` works *(terminology, grant types, tokens)*
+* Explain how `OpenID Connect` works *(terminology, tokens, flows)*
+* Learn how to use `IdentityServer` for integrating  `OAuth 2.0` and `OpenID Connect`
+* Associated repository branch: [identity-server](https://github.com/chsakell/aspnet-core-identity/tree/identity-server)
+
+## Part 5 - [External provider authentication & registration strategy](https://wp.me/p3mRWu-1Kq)
+
+* Step by step guides for enabling external provider authentication
+  *  [Google authentication](https://wp.me/p3mRWu-1Kq#google)
+  *  [Facebook authentication](https://wp.me/p3mRWu-1Kq#facebook)
+  *  [Twitter authentication](https://wp.me/p3mRWu-1Kq#twitter)
+  *  [Microsoft authentication](https://wp.me/p3mRWu-1Kq#microsoft)
+  *  [GitHub authentication](https://wp.me/p3mRWu-1Kq#github)
+  *  [LinkedIn authentication](https://wp.me/p3mRWu-1Kq#linkedin)
+  *  [DropBox authentication](https://wp.me/p3mRWu-1Kq#dropbox)
+* Implement an external provider [registration strategy](https://wp.me/p3mRWu-1Kq#registration-strategy)
+* Associated repository branch: [external-authentication](https://github.com/chsakell/aspnet-core-identity/tree/external-authentication)
+
+## Part 6 - [Two-Factor Authentication](https://wp.me/p3mRWu-1Pe)
+
+* Implement all Two Factor Authentication related tasks:
+  *  Enable/Disable 2FA
+  *  Configure authenticator app *(QR Code included)*
+  *  Generate/Reset recovery tokens
+  *  Reset authenticator app
+* Explore the 2FA code and database schema
+* Enhance the security level of 2FA by overriding the default implementation
+  *  Encrypt authenticator key
+  *  Encrypt recovery tokens
+* Associated repository branch: [two-factor-authentication](https://github.com/chsakell/aspnet-core-identity/tree/two-factor-authentication)
+
 > To be continued..
 
 ## Installation instructions
 
 The project is built with ASP.NET Core with Angular on the client side. 
-1. **Visual Studio 2017**: Just open the solution and wait to install the npm packages before running
-2. **Without Visual Studio**:
+1. **Basic project setup**:
     * `cd ./AspNetCoreIdentity` where the package.json file exist
     * `npm install`
     * `dotnet restore`
     * `dotnet build`
     * `dotnet run`
-3. **Create the database** *(required for second part and later)*
+2. **Create the *AspNetCoreIdentityDb* database** *(skip if you want to run with In memory DB)*
     * `cd ./AspNetCoreIdentity` where the AspNetCoreIdentity.csproj exist
-    * `dotnet ef migrations add initial_migration`
-    * `dotnet ef database update`
+    * `Add-Migration initial_migration` or `dotnet ef migrations add initial_migration`
+    * `Update-Database` or `dotnet ef database update`
+3. **Create the *IdentityServerDb* database** *(skip if you want to run with In memory DB)*
+    * Follow the [instructions](https://github.com/chsakell/aspnet-core-identity/blob/master/IdentityServer/Data/instructions.md)
 
-> In case you don't want to use SQL Database simply set **InMemoryProvider: true** in the *appsettings.json*
+> In case you don't want to use a real SQL Server Database when running the `AspNetCoreIdentity` project, simply set **InMemoryProvider: true** in the *appsettings.json*. This option will use in memory database
+
+> In case you don't want to use a real SQL Server Database when running the `IdentityServer` project simply set **UseInMemoryStores: true** in the relative *appsettings.json* This option will use in memory database
 
 <h3 style="font-weight:normal;">Follow chsakell's Blog</h3>
 <table id="gradient-style" style="box-shadow:3px -2px 10px #1F394C;font-size:12px;margin:15px;width:290px;text-align:left;border-collapse:collapse;" summary="">
@@ -72,5 +114,11 @@ The project is built with ASP.NET Core with Angular on the client side.
 </tr>
 </tbody>
 </table>
+
+## Donation ##
+You can show your support to this project by making a donation via PayPal
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=SQK68T4HX9H56&currency_code=EUR&source=url)
+
 <h3>License</h3>
 Code released under the <a href="https://github.com/chsakell/aspnet-core-identity/blob/master/LICENSE" target="_blank"> MIT license</a>.
